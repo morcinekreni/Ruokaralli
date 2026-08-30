@@ -206,7 +206,12 @@
 
 <main>
 
-  <div class="ad-slot ad-top">Mainospaikka (esim. Google AdSense tähän)</div>
+  <div class="ad-slot ad-top">
+    <script>
+      atOptions = { 'key' : 'ebf20a14cd758ff5c1f5b373d9696b4e', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+    </script>
+    <script src="https://www.highrevenueformat.com/ebf20a14cd758ff5c1f5b373d9696b4e/invoke.js"></script>
+  </div>
 
   <div class="panel">
     <h2>Mitä tänään tehdään?</h2>
@@ -1030,16 +1035,27 @@ document.getElementById("actionBtn").onclick = ()=>{
   revealNext(currentMode==="surprise" ? 1 : 5);
 };
 
+function buildInListAd(){
+  const ad = document.createElement("div");
+  ad.className = "ad-slot";
+  const inlineScript = document.createElement("script");
+  inlineScript.async = false;
+  inlineScript.text = "atOptions = { 'key' : '336ba149ff2dde929b595683821bd032', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };";
+  const invokeScript = document.createElement("script");
+  invokeScript.async = false;
+  invokeScript.src = "https://www.highrevenueformat.com/336ba149ff2dde929b595683821bd032/invoke.js";
+  ad.appendChild(inlineScript);
+  ad.appendChild(invokeScript);
+  return ad;
+}
+
 function revealNext(n){
   const slice = currentResults.slice(revealedCount, revealedCount+n);
   slice.forEach((r, idx)=>{
     cardStack.appendChild(buildCard(r));
     const overallIdx = revealedCount + idx + 1;
     if(overallIdx % 5 === 0 && overallIdx < currentResults.length){
-      const ad = document.createElement("div");
-      ad.className = "ad-slot";
-      ad.textContent = "Mainospaikka";
-      cardStack.appendChild(ad);
+      cardStack.appendChild(buildInListAd());
     }
   });
   revealedCount += slice.length;
@@ -1167,5 +1183,8 @@ function showToast(msg){
 
 document.getElementById("actionBtn").click();
 </script>
+
+<script async="async" data-cfasync="false" src="https://pl31102539.profitableratecpmnetwork.com/e814775888c85cf00910163b9b941221/invoke.js"></script>
+<div id="container-e814775888c85cf00910163b9b941221"></div>
 </body>
 </html>
