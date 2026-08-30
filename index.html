@@ -167,12 +167,27 @@
   .ing-list li.missing-ing{color:var(--orange-dark);font-weight:700;}
   .steps{padding-left:20px;font-size:14.5px;line-height:1.6;}
   .steps li{margin-bottom:8px;}
-  .modal-actions{display:flex;gap:8px;margin-top:16px;}
+  .modal-actions{display:flex;justify-content:center;margin-top:16px;}
   .modal-actions button{
-    flex:1;padding:11px;border-radius:12px;border:none;font-weight:700;cursor:pointer;font-family:'Karla',sans-serif;
+    padding:11px 28px;border-radius:12px;border:none;font-weight:700;cursor:pointer;font-family:'Karla',sans-serif;
   }
-  .btn-shop{background:var(--orange);color:#fff;}
-  .btn-fav{background:#f1ede2;color:var(--text);}
+  .btn-fav{background:var(--orange);color:#fff;}
+
+  .site-footer{
+    background:var(--bg-card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:24px 16px;
+    margin:24px 0 20px;
+    text-align:center;
+  }
+  .site-footer h2{margin:0 0 8px;font-size:16px;color:var(--green-dark);}
+  .site-footer p{margin:0 0 10px;font-size:13.5px;color:var(--text-soft);}
+  .footer-email{
+    display:inline-block;font-weight:700;color:var(--orange-dark);
+    text-decoration:none;font-size:14.5px;
+  }
+  .footer-email:hover{text-decoration:underline;}
 
   .toast{
     position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
@@ -228,6 +243,12 @@
 
   <div class="result-count" id="resultCount"></div>
   <div class="card-stack" id="cardStack"></div>
+
+  <footer class="site-footer">
+    <h2>Ota yhteyttä</h2>
+    <p>Kysyttävää, palautetta tai reseptivinkkejä? Laita viestiä osoitteeseen</p>
+    <a class="footer-email" href="mailto:info.ruokaralli@gmail.com">info.ruokaralli@gmail.com</a>
+  </footer>
 
 </main>
 
@@ -900,7 +921,6 @@ let selectedIngredients = [];
 let currentMode = "pantry";
 let selectedBudget = null;
 let favorites = JSON.parse(localStorage.getItem("ruokaralli_favorites")||"[]");
-let shoppingList = JSON.parse(localStorage.getItem("ruokaralli_shoppinglist")||"[]");
 
 function saveFavs(){ localStorage.setItem("ruokaralli_favorites", JSON.stringify(favorites)); updateFavCount(); }
 function updateFavCount(){ document.getElementById("favCount").textContent = favorites.length; }
@@ -1114,7 +1134,6 @@ function renderModal(recipe){
       <h3 style="font-size:15px;margin-bottom:6px;">Valmistusohje</h3>
       <ol class="steps">${recipe.steps.map(s=>`<li>${s}</li>`).join("")}</ol>
       <div class="modal-actions">
-        <button class="btn-shop" id="addShopping">🛒 Lisää puuttuvat ostoslistalle</button>
         <button class="btn-fav" id="toggleFavModal">${favorites.includes(recipe.id)?'♥ Poista suosikeista':'♡ Lisää suosikkeihin'}</button>
       </div>
     </div>
@@ -1127,12 +1146,6 @@ function renderModal(recipe){
     else favorites.push(recipe.id);
     saveFavs();
     renderModal(recipe);
-  };
-  document.getElementById("addShopping").onclick = ()=>{
-    const toAdd = m.missing.length>0 ? m.missing : recipe.ingredients.filter(i=>i.chip).map(i=>i.chip);
-    toAdd.forEach(name=>{ if(!shoppingList.includes(name)) shoppingList.push(name); });
-    localStorage.setItem("ruokaralli_shoppinglist", JSON.stringify(shoppingList));
-    showToast(toAdd.length + " ainesta lisätty ostoslistalle");
   };
 }
 overlay.onclick = (e)=>{ if(e.target===overlay) overlay.classList.remove("open"); };
