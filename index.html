@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ruokaralli.fi – Mitä tänään syötäisiin?</title>
+<title>Ruokaralli.fi – Mitä tänään syötäisiin? Reseptejä kaapin sisällöstä</title>
+<meta name="description" content="Ruokaralli.fi auttaa löytämään arkiruokareseptin kotoa löytyvistä raaka-aineista, budjetin tai sattuman mukaan. Yli 380 suomennettua reseptiä: jauheliharuoat, kanaruoat, lohiruoat, kasvisruoat ja klassikot.">
+<link rel="canonical" href="https://ruokaralli.fi/">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9816089565499794"
      crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1172,6 +1174,12 @@ function showToast(msg){
 }
 
 document.getElementById("actionBtn").click();
+
+const deepLinkId = new URLSearchParams(window.location.search).get("resepti");
+if(deepLinkId){
+  const deepLinkRecipe = RECIPES.find(r=>r.id===deepLinkId);
+  if(deepLinkRecipe) openModal(deepLinkRecipe);
+}
 </script>
 </body>
 </html>
