@@ -206,12 +206,7 @@
 
 <main>
 
-  <div class="ad-slot top-banner">
-    <script>
-      atOptions = { 'key' : '2867cdef54fab348e2c09c9e2358a90b', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-    </script>
-    <script src="https://www.highrevenueformat.com/2867cdef54fab348e2c09c9e2358a90b/invoke.js"></script>
-  </div>
+  <div class="ad-slot top-banner">Mainospaikka</div>
 
   <div class="panel">
     <h2>Mitä tänään tehdään?</h2>
@@ -1038,14 +1033,7 @@ document.getElementById("actionBtn").onclick = ()=>{
 function buildInListAd(){
   const ad = document.createElement("div");
   ad.className = "ad-slot";
-  const inlineScript = document.createElement("script");
-  inlineScript.async = false;
-  inlineScript.text = "atOptions = { 'key' : 'aa939a6fb5705227214aed2013834887', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };";
-  const invokeScript = document.createElement("script");
-  invokeScript.async = false;
-  invokeScript.src = "https://www.highrevenueformat.com/aa939a6fb5705227214aed2013834887/invoke.js";
-  ad.appendChild(inlineScript);
-  ad.appendChild(invokeScript);
+  ad.textContent = "Mainospaikka";
   return ad;
 }
 
@@ -1183,8 +1171,5 @@ function showToast(msg){
 
 document.getElementById("actionBtn").click();
 </script>
-
-<script async="async" data-cfasync="false" src="https://pl31102980.profitableratecpmnetwork.com/1e517263d09d7af62e6808a8a96ae041/invoke.js"></script>
-<div id="container-1e517263d09d7af62e6808a8a96ae041"></div>
 </body>
 </html>
